@@ -8,10 +8,7 @@ let products = productos.getProducts();
 app.get("/products", async (req, res) => {
     let product = await products;
     const { limit } = req.query;
-    if(limit){
-        res.send(await product.slice(0, limit))
-    }
-    res.send(await product);
+    limit ? res.send(await product.slice(0, limit)) : res.send(await product);
 })
 
 app.get("/products/:pid", async (req, res) => {
